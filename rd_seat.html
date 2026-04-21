@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>자리 배치</title>
+
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    align-items: center;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(20, 60px);
+    grid-auto-rows: 60px;
+    gap: 8px;
+    position: relative;
+    justify-content: center;
+  }
+
+  .seat, .teacher {
+    background: #f3e5c3;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .seat.selected {
+    background: #ffcc80;
+  }
+
+  .teacher {
+    background: #90caf9;
+    font-weight: bold;
+  }
+  
+  .btn-area {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  }
+</style>
+</head>
+
+<body>
+  <container>
+    <h2>자리 배치 프로그램</h2>
+    <div class="btn-area">
+      <button onclick="shuffleSeats()">🎲 랜덤 배치</button>
+     </div>
+    <div class="grid" id="grid"></div>
+
+      <script>
+      /* =========================
+        1. 학생 데이터
+      ========================= */
+      let people = [
+        "조윤","조은결","이춘우","최준호","이서우","황동건","이상욱",
+        "권태현","김성호","김민정","박지우","박은빈","원가희","신혜진",
+        "한예경","진미경","박상우","조용민","김선희","한은태",
+        "유지산","김민정","이종혁","김유선","박초롱","박준하",
+        "심정호","이태경","채란","이민지"
+      ];
+
+      let seats = people.map((name, i) => ({
+        id: i,
+        name
+      }));
+
+      let selected = null;
+
+      /* =========================
+        2. 좌석 위치 (이미지 구조 반영)
+      ========================= */
+      const seatPositions = [
+        // 좌측 블록
+        { id:0, col:2, row:1 },
+        { id:1, col:3, row:1 },
+
+        { id:2, col:2, row:2 },
+        { id:3, col:3, row:2 },
+
+        { id:4, col:3, row:3 },
+        { id:5, col:3, row:4 },
+
+        // 중앙 블록
+        { id:6, col:5, row:1 },
+        { id:7, col:6, row:1 },
+        { id:8, col:7, row:1 },
+
+        { id:9, col:5, row:2 },
+        { id:10, col:6, row:2 },
+        { id:11, col:7, row:2 },
+
+        { id:12, col:5, row:3 },
+        { id:13, col:6, row:3 },
+        { id:14, col:7, row:3 },
+
+        { id:15, col:5, row:4 },
+        { id:16, col:6, row:4 },
+        { id:17, col:7, row:4 },
+
+        { id:18, col:6, row:5 },
+        { id:19, col:7, row:5 },
+
+
+        // 우측 블록
+        { id:20, col:9, row:1 },
+        { id:21, col:10, row:1 },
+
+        { id:22, col:9, row:2 },
+        { id:23, col:10, row:2 },
+
+        { id:24, col:9, row:3 },
+        { id:25, col:10, row:3 },
+
+        { id:26, col:9, row:4 },
+        { id:27, col:10, row:4 },
+
+        { id:28, col:9, row:5 },
+        { id:29, col:10, row:5 }
+      ];
+
+      /* =========================
+        3. 강사 위치 (고정 1명)
+      ========================= */
+      const teacherPos = { col: 3, row: 5 };
+
+      /* =========================
+        4. 렌더링
+      ========================= */
+      function render() {
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+
+        // 좌석
+        seatPositions.forEach(pos => {
+          const seat = seats[pos.id];
+
+          const div = document.createElement("div");
+          div.className = "seat";
+          div.textContent = seat.name;
+
+          div.style.gridColumn = pos.col;
+          div.style.gridRow = pos.row;
+
+          if (selected === seat) div.classList.add("selected");
+
+          div.onclick = () => clickSeat(seat);
+
+          grid.appendChild(div);
+        });
+
+        // 강사
+        const t = document.createElement("div");
+        t.className = "teacher";
+        t.textContent = "강사";
+
+        t.style.gridColumn = teacherPos.col;
+        t.style.gridRow = teacherPos.row;
+
+        grid.appendChild(t);
+      }
+
+      /* =========================
+        5. 클릭 교환
+      ========================= */
+      function clickSeat(seat) {
+        if (!selected) {
+          selected = seat;
+        } else {
+          [selected.name, seat.name] = [seat.name, selected.name];
+          selected = null;
+        }
+        render();
+      }
+
+      /* =========================
+        6. 랜덤 배치
+      ========================= */
+      function shuffleSeats() {
+        for (let i = seats.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [seats[i].name, seats[j].name] = [seats[j].name, seats[i].name];
+        }
+        render();
+      }
+
+      /* 초기 실행 */
+      render();
+      </script>
+    </container>
+  </body>
+</html>
