@@ -1,0 +1,35 @@
+h1, h2 {
+    text-align: center;
+}
+
+#calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* calendar th: 내부 th
+    calendar > th : 바로 밑 th */
+    
+/* #calendar th:first-child #calendar td:first-child */
+#calendar tr > *:first-child {
+    color: red;
+}
+
+#calendar th:last-child, #calendar td:last-child {
+    color: blue;
+}
+
+#calendar td {
+    text-align: center;
+    padding: 10px;
+}
+
+.img-form {
+    justify-content: center;
+    align-content: center;
+}
+img {
+    max-width: 30%;
+    height: auto;
+    
+}

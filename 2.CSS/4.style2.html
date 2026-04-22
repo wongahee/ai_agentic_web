@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* inline > tag > class (.) > id (#)
+        같은 계층에서는 뒤로 갈수록 우선순위가 높음 */
+        .my_bg_orange {
+            background-color: orange;
+        }
+
+        .my_bg_yellow {
+            border: 1px dotted red;
+            background-color: yellow;
+        }
+
+        .my_text_blue {
+            color: blue;
+        }
+
+        .my_text_pink {
+            color: pink;
+        }
+
+        p{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 연습</h1>
+    <p class="my_bg_yellow">이곳에 문장을 입력하세요.</p>
+    <p class="my_text_pink">이곳에 문장을 입력하세요.</p>
+    <p class="my_bg_yellow my_text_blue" id="my_bg_orange">이곳에 문장을 입력하세요.</p>
+    <!-- class > id 이므로 bg는 yellow로 출력 -->
+    <p class="my_text_blue my_text_pink">이곳에 문장을 입력하세요.</p>
+    <!-- style 태그에 pink가 더 뒤에 있으므로 글자색상 pink로 출력 -->
+</body>
+</html>
