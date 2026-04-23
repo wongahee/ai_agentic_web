@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center my-4">부트스트랩 그리드 예제</h2>
+        <div class="row">
+            <div class="col">1번 열</div>
+            <div class="col">2번 열</div>
+            <div class="col">3번 열</div>
+            <div class="col">4번 열</div>
+            <div class="col">5번 열</div>
+            <div class="col">6번 열</div>
+            <div class="col">7번 열</div>
+            <div class="col">8번 열</div>
+            <div class="col">9번 열</div>
+            <div class="col">10번 열</div>
+            <div class="col">11번 열</div>
+            <div class="col">12번 열</div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">4칸짜리 열</div>
+                <div class="col-md-4">8칸짜리 열</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4" style="background-color: lightblue;">4칸 열</div>
+                <div class="col-6" style="background-color: lightcoral;">6칸 열</div>
+                <div class="col-8" style="background-color: lightpink;">8칸 열</div>
+            </div>
+        </div>
+        <div class="container">
+            <h4 class="text-center my-4">반응형 컨테이너 예제</h4>
+            <div class="row">
+                <!-- 페이지 크기에 따라 지정 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 bg-primary text-white p-3">Box 1</div>
+                <div class="col-sm-6 col-md-4 col-lg-3  bg-secondary text-white p-3">Box 2</div>
+                <div class="col-sm-6 col-md-4 col-lg-3  bg-danger text-white p-3">Box 3</div>
+                <div class="col-sm-6 col-md-4 col-lg-3  bg-warning text-white p-3">Box 3</div>
+                <div class="col-sm-6 col-md-4 col-lg-3  bg-info text-white p-3">Box 3</div>
+                <div class="col-sm-6 col-md-4 col-lg-3  bg-success text-white p-3">Box 4</div>
+            </div>
+        </div>
+        <div class="container">
+            <h4 class="text-center my-4">더 디테일한 반응형 컨테이너 예제</h4>
+            <div class="d-block d-sm-none bg-success text-white p-3 text-center">576 미만 화면에서 보입니다.</div>
+            <div class="d-none d-sm-block d-md-none bg-primary text-white p-3 text-center">576 ~ 768인 화면에서 보입니다.</div>
+            <div class="d-none d-md-block d-lg-none bg-secondary text-white p-3 text-center">768 ~ 992 화면에서 보입니다.</div>
+            <div class="d-none d-lg-block d-xl-none bg-warning text-white p-3 text-center">992 ~ 1200미만인 화면에서 보입니다.</div>
+            <div class="d-none d-xl-block bg-info text-white p-3 text-center">1200 이상 화면에서 보입니다.</div>
+        </div>
+    </div>
+</body>
+</html>
