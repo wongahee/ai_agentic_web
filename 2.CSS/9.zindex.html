@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            color: white;
+            position: relative;
+        }
+        
+        .div1 {
+            background-color: red;
+            z-index: 4;
+            /* z-index 값: 상대적 값으로 layer의 위, 아래를 결정 */
+        }
+
+        .div2 {
+            background-color: orange;
+            bottom: 50px;
+            z-index: 3;
+        }
+
+        .div3 {
+            background-color: yellow;
+            bottom: 100px;
+            z-index: 2;
+        }
+
+        .div4 {
+            background-color: greenyellow;
+            bottom: 150px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>z-index 우선순위</h1>
+    <div class="div1">Red</div>
+    <div class="div2">Orange</div>
+    <div class="div3">Yellow</div>
+    <div class="div4">Green</div>
+</body>
+</html>

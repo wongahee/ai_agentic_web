@@ -1,0 +1,19 @@
+body {
+    background: #f5f7fa;
+    font-family: 'Pretendard', sans-serif;
+}
+  
+.title-wrap{
+    background: linear-gradient(135deg, #6a8cff, #8fd3f4);
+    width: 20%;
+    border-radius: 20%; /* round */
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 10px 40px;
+}
+
+.title-wrap h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+}

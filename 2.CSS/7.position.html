@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+        .test {
+            background-color: orangered;
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+
+        .location {
+            /* relative: 상대적, absolute: 절대적 
+            relative는 원래 있어야하는 위치에서 이동 값
+            absolute는 0,0에서 이동한 위치값
+            */
+            background-color: orangered;
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+
+        .image {
+            width: 100px;
+            height: 100px;
+            background-image: url(images/fam.jpg);
+            background-size: 100% 100%;
+        }
+
+        .image-text {
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div class="location">2</div>
+    <div>3</div>
+    <div class="image">
+        <p class="image-text">고양이</p>
+    </div>
+</body>
+</html>

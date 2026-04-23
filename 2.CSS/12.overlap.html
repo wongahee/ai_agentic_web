@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 400px;
+            position: relative;
+            margin: 30px;
+        }
+
+        .box1, .box2 {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-color: #00ff00;
+            opacity: 0.7;
+            position: absolute;
+        }
+
+        .box1:hover {
+            z-index: 5;
+            opacity: 1.0;
+            transform-style: all;
+            transition-duration: 2s;
+            /* transition : 변화 효과
+            2초에 걸려서 효과 적용 */
+        }
+
+        .box2 {
+            background-color: #d6d1d1;
+        }
+
+        .overlap{
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">상단 영역</div>
+        <div class="box2 overlap">하단 영역</div>
+    </div>
+</body>
+</html>
