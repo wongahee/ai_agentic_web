@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll Animation Demo</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+
+<body class="bg-black text-white">
+
+  <!-- HERO -->
+  <section class="h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 to-black">
+    <h1 class="text-5xl font-bold" data-aos="zoom-in">
+      Scroll Down 👇
+    </h1>
+  </section>
+
+  <!-- SECTION 1 -->
+  <section class="min-h-screen flex flex-col items-center justify-center space-y-10">
+    <h2 class="text-3xl" data-aos="fade-up">Fade Up</h2>
+    <div class="w-64 h-40 bg-gray-700 rounded-xl" data-aos="fade-up"></div>
+    <div class="w-64 h-40 bg-gray-600 rounded-xl" data-aos="fade-down"></div>
+    <div class="w-64 h-40 bg-gray-500 rounded-xl" data-aos="fade-left"></div>
+    <div class="w-64 h-40 bg-gray-400 rounded-xl" data-aos="fade-right"></div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="min-h-screen flex flex-col items-center justify-center space-y-10 bg-gray-900">
+    <h2 class="text-3xl" data-aos="flip-left">Flip Animations</h2>
+    <div class="flex space-x-6">
+      <div class="w-40 h-40 bg-pink-500 rounded-xl" data-aos="flip-left"></div>
+      <div class="w-40 h-40 bg-blue-500 rounded-xl" data-aos="flip-right"></div>
+      <div class="w-40 h-40 bg-green-500 rounded-xl" data-aos="flip-up"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="min-h-screen flex flex-col items-center justify-center space-y-10">
+    <h2 class="text-3xl" data-aos="zoom-in">Zoom Effects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="w-48 h-48 bg-yellow-500 rounded-xl" data-aos="zoom-in"></div>
+      <div class="w-48 h-48 bg-red-500 rounded-xl" data-aos="zoom-in-up"></div>
+      <div class="w-48 h-48 bg-indigo-500 rounded-xl" data-aos="zoom-out"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="min-h-screen flex flex-col items-center justify-center space-y-10 bg-gray-900">
+    <h2 class="text-3xl" data-aos="fade-right">Delay & Duration</h2>
+    <div class="flex space-x-4">
+      <div class="w-32 h-32 bg-purple-500 rounded-lg" data-aos="fade-up" data-aos-delay="0"></div>
+      <div class="w-32 h-32 bg-purple-400 rounded-lg" data-aos="fade-up" data-aos-delay="200"></div>
+      <div class="w-32 h-32 bg-purple-300 rounded-lg" data-aos="fade-up" data-aos-delay="400"></div>
+      <div class="w-32 h-32 bg-purple-200 rounded-lg" data-aos="fade-up" data-aos-delay="600"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section class="min-h-screen flex flex-col items-center justify-center space-y-10">
+    <h2 class="text-3xl" data-aos="fade-up">Parallax 느낌</h2>
+    <div class="space-y-10">
+      <div class="w-72 h-32 bg-cyan-500 rounded-xl" data-aos="fade-right" data-aos-duration="1500"></div>
+      <div class="w-72 h-32 bg-cyan-400 rounded-xl" data-aos="fade-left" data-aos-duration="2000"></div>
+      <div class="w-72 h-32 bg-cyan-300 rounded-xl" data-aos="fade-up" data-aos-duration="2500"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="h-screen flex items-center justify-center bg-gradient-to-tr from-black to-purple-900">
+    <h2 class="text-4xl" data-aos="zoom-in-up">
+      The End 🚀
+    </h2>
+  </section>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: false
+    });
+  </script>
+
+</body>
+</html>

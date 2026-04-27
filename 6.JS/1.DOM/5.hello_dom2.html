@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>나의 헤딩</h1>
+    <p>여기는 나의 문장이 있는 곳</p>
+    <div id="output"><!-- 동적으로 컨텐츠를 채울 위치 --></div>
+    <p class="text">여기는 나의 두번째 문장이 있는 곳</p>
+    <button onclick="sayHello()">여기는 나의 버튼 - 버튼이 눌리면 sayHello() 호출</button>
+    <button onclick="sayHello2()">여기는 나의 버튼 - 버튼이 눌리면 sayHello2() 호출</button>
+    <button onclick="sayHello3()">여기는 나의 버튼 - 버튼이 눌리면 sayHello3() 호출</button>
+    <button onclick="sayHello4()">여기는 나의 버튼 - 버튼이 눌리면 sayHello4() 호출</button>
+    <script>
+        function sayHello() {
+            console.log("sayHello");
+            const myoutput = document.getElementById('output');
+            console.log(myoutput);
+            myoutput.textContent = '나의 새로운 동적 문장';
+        }
+
+        function sayHello2() {
+            console.log("sayHello");
+            // getElements
+            // 리스트 형식으로 반환됨 (HTML Collection) index 값 명시해야함
+            const myoutput = document.getElementsByTagName('div');
+            console.log(myoutput[0]);
+            myoutput[0].textContent = '나의 새로운 동적 문장 2';
+        }
+
+        function sayHello3() {
+            console.log("sayHello");
+            const myoutput = document.getElementsByTagName('p');
+            // 명시한 p 태그 DOM들의 요소(Elements)
+            console.log(myoutput[0]);
+            console.log(myoutput[1]);
+
+            myoutput[0].textContent = '나의 새로운 동적 문장 3';
+        }
+
+        function sayHello4() {
+            console.log("sayHello");
+            const myoutput = document.getElementsByClassName("text");
+            console.log(myoutput);
+            console.log(myoutput[0]);
+            console.log(myoutput[1]);
+
+            myoutput[0].textContent = '나의 새로운 동적 문장 4';
+        }
+    </script>
+</body>
+</html>
