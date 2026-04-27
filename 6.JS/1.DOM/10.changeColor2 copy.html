@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">색상 변경 버튼</h1>
+    <button onclick="changeColor()">색상 변경</button>
+    <script>
+        function changeColor() {
+            // random 함수: 0 ~ 1까지의 값 추출
+            // floor 함수: 내림. 소수점 이하 버리기
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+
+            // 16진수의 hex로 바꾸기
+            // padStart(자릿수, 값이 없을 시 채울 값)
+            const rHex = r.toString(16).padStart(2, '0');
+            const gHex = g.toString(16).padStart(2, '0');
+            const bHex = b.toString(16).padStart(2, '0');
+
+            const finalColor = '#' + rHex + gHex + bHex;
+            console.log(finalColor);
+            // 다른 풀이
+            // `#${rHex}{gHex}{bHex}`;
+            // `rgba(${r}, ${g}, ${b}, 투명도)`;
+
+            document.body.style.backgroundColor = finalColor;
+        }
+    </script>
+</body>
+</html>

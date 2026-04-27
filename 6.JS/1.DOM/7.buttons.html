@@ -7,18 +7,22 @@
 </head>
 <body>
     <h1>버튼 두 개</h1>
-    <div id="result">value</div>
+    <div id="result">0</div>
     <div>
-        <button onclick="plus()">+1</button>
-        <button onclick="minus()">-1</button>
+        <button onclick="increment()">+1</button>
+        <button onclick="decrement()">-1</button>
     </div>
     <script>
-        function plus() {
-            const value = 0;
+        function increment() {
+            const result = document.getElementById('result');
+            // console.log(result);
+            let value = parseInt(result.textContent);
+            value += 1;
+            result.textContent = value;
         }
 
-        function minus() {
-
+        function decrement() {
+            document.getElementById('result').textContent -= 1;
         }
     </script>
 </body>

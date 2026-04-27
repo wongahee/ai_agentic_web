@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">색상 변경 버튼</h1>
+    <button onclick="changeColor()">색상 변경</button>
+    <script>
+        function changeColor() {
+            // const heading = document.getElementById('text');
+            // heading.style.color = 'red';
+
+            // 처음 로딩하면, 두 번 클릭해야 빨간색으로 변경되는 에러
+            // 방법 1. 초깃값을 bgcolor white로 지정하기
+            // 방법 2. 아래 논리 구조를 변경시켜 문제 해결하기
+            // ex) != red면 red, white
+            if (document.body.style.backgroundColor == 'white') {
+                document.body.style.backgroundColor = 'red';
+            } else {
+                document.body.style.backgroundColor = 'white';
+            }
+        }
+    </script>
+</body>
+</html>
