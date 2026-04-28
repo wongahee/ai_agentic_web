@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dropZone {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ccc;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div id="dropZone">여기 파일을 드래그하세요.</div>
+    <div id="fileList">
+        <h3>드롭된 파일 목록: </h3>
+        <ul id="fileNames"><!-- --></ul>
+    </div>
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileNames = document.getElementById('fileNames');
+
+        // 파일을 dragover 했을 때
+        dropZone.addEventListener('dragover', (ev) => {
+            ev.preventDefault();
+            dropZone.style.backgroundColor = 'yellow';
+        });
+
+        // 다시 나갔을 때
+        dropZone.addEventListener('dragleave', (ev) => {
+            ev.preventDefault();
+            dropZone.style.backgroundColor = '#f9f9f9';
+        });
+
+        // 파일을 내려놓았을 때
+        dropZone.addEventListener('drop', (ev) => {
+            ev.preventDefault();
+            dropZone.style.backgroundColor = 'grey';
+
+            // 드롭된 파일 목록에 표시하기
+            const files = ev.dataTransfer.files;
+            // console.log(files);
+
+            // 방법 1. for문 사용
+            // if (files.length > 0) {
+            //     for (let i = 0; i < files.length; i++) {
+            //         const li = document.createElement('li');
+            //         li.textContent = files[i].name;
+            //         fileNames.appendChild(li);
+            //     }
+            // }
+
+            // 방법 2. forEach 사용
+            // forEach가 없는 리스트 유형들은 배열로 타입 변환을 해줌
+            // if (files.length > 0) {
+            //     Array.from(files).forEach((file) => {
+            //         const li = document.createElement('li');
+            //         li.textContent = file.name;
+            //         fileNames.appendChild(li);
+            //     })
+            // }
+
+            // 방법 3. spread 문법
+            // 리스트를 풀어해치는 스프레드 연산자로 풀었다가 다시 리스트로 묶기
+            // [...연산자] -> []
+            // console.log([...files]);
+            [...files].forEach((file) => {
+                const li = document.createElement('li');
+                li.textContent = file.name;
+                fileNames.appendChild(li);
+            })
+        });
+    </script>
+</body>
+</html>
