@@ -1,0 +1,44 @@
+<!-- 
+ 사용자가 입력한 모든 input history를 보여줌 
+정답을 맞췄을 때, 몇 번만에 맞췄는지 보여줌 "축하합니다. 정답을 0번만에 맞췄습니다."
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>숫자 맞추기 게임</h1>
+    <h2>1 ~ 100까지의 숫자를 맞춰보세요.</h2>
+    <input type="number" id="guessNumber" placeholder="숫자를 입력하시오">
+    <button id="guessButton" onclick="guessNumber()">Guess</button>
+    <div id="result"><!-- 결과가 출력될 위치 --></div>
+    <div id="history"><!-- 결과가 출력될 위치 --></div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1; // 1 ~ 100까지의 값
+        console.log("생성한 숫자: ", randomNumber);
+        const result = document.getElementById('result');
+        const history = document.getElementById('history');
+        const guessButton = document.getElementById('guessButton');
+
+        function guessNumber() {
+            const guess = document.getElementById('guessNumber').value;
+
+            if (guess > randomNumber) {
+                result.textContent = '숫자가 큽니다. 더 작은 숫자를 입력하세요.';        
+            } else if (guess < randomNumber) {
+                result.textContent = '숫자가 작습니다. 더 큰 숫자를 입력하세요.';
+            } else {
+                result.textContent = `축하합니다. 정답을 0번만에 맞췄습니다.`;
+                guessButton.disabled = true;
+            }
+            const number = document.createElement('p');
+            number.textContent = `입력값은 ${guess}: ${result.textContent}`;
+            history.appendChild(number);
+        }
+    </script>
+</body>
+</html>

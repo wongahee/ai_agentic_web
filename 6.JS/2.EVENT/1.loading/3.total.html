@@ -1,0 +1,50 @@
+<!-- 
+ script 출력 순서 확인하기
+ 숫자 순서대로 출력되는 것을 확인할 수 있음 
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        console.log('0. 나는 헤더에 있는 스크립트 블럭');
+
+        // DOM 실행 시 로딩하기
+        document.addEventListener('DOMContentLoaded', () => {
+            const mytitle0 = document.getElementById('title');
+            console.log("0번에서 시도: ", mytitle0);
+        })
+    </script>
+</head>
+<body>
+    
+    <script>
+        console.log('1. 나는 body 바로 아래에 있는 스트립트 블럭');
+        const mytitle1 = document.getElementById('title');
+        console.log("1번에서 시도: ", mytitle1);
+
+    </script>
+
+    <h1 id="title">마이 타이블</h1>
+
+    <script>
+        // DOM과 window 리소스의 로딩 순서 확인
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('3. DOM 로딩 완료');
+            const mytitle3 = document.getElementById('title');
+            console.log("3번에서 시도: ", mytitle3);
+        })
+
+        window.onload = function() {
+            console.log('4. 모든 리소스 로딩 완료 (HTML/CSS/JS/IMG 등)')
+        }
+    </script>
+
+    <script>
+        console.log('2. 나는 body 맨 아래에 있는 스트립트 블럭');
+    </script>
+
+</body>
+</html>

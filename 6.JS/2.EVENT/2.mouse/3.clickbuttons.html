@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mybutton {
+            width: 200px;
+            height: 100px;
+            background-color: lime;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="mybutton">클릭하시오</div>
+    <script>
+        // document.getElementById('mybutton').addEventListener('mousedown', () => {
+        //     console.log('버튼 눌림');
+        // });
+        
+        // mousedown 마우스 내릴 때, mouseup 마우스 땔 때
+        document.getElementById('mybutton').addEventListener('mousedown', (event) => {
+            console.log('버튼 눌림: ', event);
+
+            switch(event.button) {
+                // 왼쪽 버튼
+                case 0: 
+                    console.log('왼쪽 버튼 눌림');
+                    break;
+                // 중간 버튼 (휠)
+                case 1:
+                    console.log('가운데 버튼 눌림');
+                    break;
+                // 우클릭
+                case 2:
+                    console.log('오른쪽 버튼 눌림');
+                    break;
+                default:
+                    console.log('모르는 버튼 눌림', event.button);
+            }
+        });
+
+         document.getElementById('mybutton').addEventListener('mouseup', (event) => {
+            console.log('버튼 뗌: ', event);
+
+            switch(event.button) {
+                // 왼쪽 버튼
+                case 0: 
+                    console.log('왼쪽 버튼 뗌');
+                    break;
+                // 중간 버튼 (휠)
+                case 1:
+                    console.log('가운데 버튼 뗌');
+                    break;
+                // 우클릭
+                case 2:
+                    console.log('오른쪽 버튼 뗌');
+                    break;
+                default:
+                    console.log('모르는 버튼 뗌', event.button);
+            }
+        });
+    </script>
+</body>
+</html>
