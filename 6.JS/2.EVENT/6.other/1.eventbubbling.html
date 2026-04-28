@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grandparent {
+            padding: 50px;
+            background-color: lightgrey;
+        }
+        #parent {
+            padding: 50px;
+            background-color: lightblue;
+        }
+        #child {
+            padding: 50px;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<!-- 
+이벤트 버블링: 부모 요소에 설정한 이벤트가 자식 이벤트에도 적용되는 현상 
+
+1. 캡처링
+2. 타겟: target
+3. 버블링
+-->
+<body>
+    <div id="grandparent">
+        Grandparent
+        <div id="parent">
+            Parent
+            <div id="child">
+                Child
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const child = document.getElementById('child');
+            const parent = document.getElementById('parent');
+            const grandparent = document.getElementById('grandparent');
+            
+            child.addEventListener('click', (ev) => {
+                alert('Child 클릭됨');
+                ev.stopPropagation();  // 이벤트 버블링 중지
+            })
+            
+            parent.addEventListener('click', (ev) => {
+                alert('Parent 클릭됨');
+                // ev.stopPropagation();
+            })
+            
+            grandparent.addEventListener('click', () => {
+                alert('Grandparent 클릭됨');
+            })
+        });
+    </script>
+</body>
+</html>
