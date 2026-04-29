@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .stopwatch-box {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #display {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="stopwatch-box">
+        <!-- 스탑워치 표시 영역 -->
+         <div id="display">00:00.00</div>
+         <div class="button-container">
+            <button id="startButton">시작</button>
+            <button id="stopButton">중지</button>
+            <button id="resetButton">초기화</button>
+         </div>
+    </div>
+    <script>
+        // 1. DOM 요소 가져오기
+        const display = document.getElementById('display');
+
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const resetButton = document.getElementById('resetButton');
+
+        // 스톱워치 시작/경과 시간
+        let startTime;
+        let difference;
+
+        let running = false;    // 현재 타이머 상태
+
+        function startTimer() {
+            if (running) return;
+
+            startTime = new Date().getTime();
+            timerId = setInterval(updateTimer, 10);
+
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        }
+
+        function updateTimer() {
+            updateTime = new Date().getTime();
+            difference = updateTime - startTime;    // 경과시간 계산
+
+            // 1초 = 1000ms, 1분 = 60000ms
+            let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((difference % (1000 * 60)) / (1000));
+            let milliseconds = Math.floor((difference % 1000) / 10);
+
+            // console.log(`흘러간 시간 계산 ${minutes}분, ${seconds}초, ${milliseconds}ms`);
+            // display.textContent = `${minutes}:${seconds}.${milliseconds}`;
+            // 00:5.00 -> 00:05.00으로 포맷팅
+            display.textContent = 
+                (minutes < 10 ? '0' + minutes : minutes) + ':' +
+                (seconds < 10 ? '0' + seconds : seconds) + '.' +
+                (milliseconds < 10 ? '0' + milliseconds : milliseconds);
+        }
+
+        function stopTimer(){
+            clearInterval(timerId);
+
+            running = false;
+
+            stopButton.disabled = true;
+            startButton.disabled = false;
+
+            updateTime = new Date().getTime();
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            running = false;
+            display.textContent = '00:00.00';
+
+            startButton.disabled = false;
+            stopButton.disabled = false;
+        }
+        
+        startButton.addEventListener('click', startTimer);
+        stopButton.addEventListener('click', stopTimer);
+        resetButton.addEventListener('click', resetTimer);
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>실시간 검색 필터</h1>
+    <input type="text" id="searchInput" placeholder="검색어 입력하기">
+    <ul id="itemList">
+        <li>Apple</li>
+        <li>Orange</li>
+        <li>Banana</li>
+        <li>Kiwi</li>
+        <li>Graph</li>
+        <li>Cherry</li>
+        <li>Pear</li>
+        <li>Pineapple</li>
+        <li>Strawberry</li>
+        <li>Blueberry</li>
+        <li>Watermelon</li>
+        <li>Melon</li>
+        <li>Mango</li>
+        <li>Peach</li>
+        <li>Lemon</li>
+        <li>Plum</li>
+        <li>Dragonfruits</li>
+        <li>Lime</li>
+    </ul>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const itemList = document.getElementById('itemList');
+        const items = itemList.getElementsByTagName('li');
+
+        
+        searchInput.addEventListener('keyup', () => {
+            // console.log('입력중...');
+            const filter = searchInput.value.toLowerCase();
+
+            // 방법 1. for문 사용
+            /* 
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const text = item.textContent;
+                if(text.toLowerCase().includes(filter)) {
+                    // 소문자와 소문자 비교하여 대소문자 구분없이 검색
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        */
+
+            // 방법 2. forEach문
+            Array.from(items).forEach((item) => {
+                const text = item.textContent;
+                if(text.toLowerCase().includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            })
+        });
+    </script>
+</body>
+</html>

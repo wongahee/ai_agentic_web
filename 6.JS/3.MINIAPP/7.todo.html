@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>오늘 할 일 (TO DO 리스트)</h1>
+    <input type="text" id="new-todo" placeholder="할 일 입력">
+    <button id="add-todo">추가</button>
+    <ul id="todo-list">
+        <!-- 할 일이 표시될 위치 -->
+    </ul>
+    <script>
+        document.getElementById('add-todo').addEventListener('click', () => {
+            const newTodo = document.getElementById('new-todo').value;
+            
+            // 앞뒤 공백 제거
+            if(newTodo.trim() == '') return; 
+
+            const li = document.createElement('li');
+            li.textContent = newTodo;
+            
+            const todoList = document.getElementById('todo-list');
+            todoList.appendChild(li);
+            
+            // 입력창 클리어하기
+            document.getElementById('new-todo').value = '';
+        });
+        document.getElementById('new-todo').addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter') {
+                document.getElementById('add-todo').click(); // 버튼클릭 액션을 대신 수행
+            }
+        })
+    </script>
+</body>
+</html>

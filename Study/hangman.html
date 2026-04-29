@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Hangman Game</h1>
+        <p>5 Words Hangman</p>
+        <div id="result"></div>
+        <p>남은 기회: <span id="remainingChances">6</span></p>
+        <div id="history">사용한 글자: </div>
+        <p>글자 맞추기 새 게임</p>
+        <p>알파벳 한 글자씩 맞춰보세요!</p>
+        <input type="text" id="guess" maxlength="1" placeholder="알파벳을 입력하세요.">
+        <button id="guessButton" onclick="guessWord()">Guess</button>
+    </div>
+    
+    <script>
+        const words = ["apple", "grape", "peach", "mango", "berry"];
+        let selectedWord = 5;
+        let guessedLetters = [];
+        let remainingChances = 6;
+
+        function guessWord() {
+            const guessInput = document.getElementById("guess");
+            const guess = guessInput.value.toLowerCase();
+            guessInput.value = "";
+
+            if (guess.length !== 1 || !/[a-z]/.test(guess)) {
+                alert("알파벳 한 글자만 입력하세요.");
+                return;
+            }
+
+            if (guessedLetters.includes(guess)) {
+                alert("이미 사용한 글자입니다.");
+                return;
+            }
+
+            guessedLetters.push(guess);
+            document.getElementById("history").textContent = "사용한 글자: " + guessedLetters.join(", ");
+
+            if (selectedWord.includes(guess)) {
+                updateResult();
+                if (isWordGuessed()) {
+                    alert("축하합니다! 단어를 맞췄습니다!");
+                    resetGame();
+                }
+            } else {
+                remainingChances--;
+                document.querySelector("p:nth-child(3)").textContent = "남은 기회: " + remainingChances;
+                if (remainingChances === 0) {
+                    alert("게임 오버! 정답은 '" + selectedWord + "'였습니다.");
+                    resetGame();
+                }
+            }
+        }
+
+        function updateResult() {
+            let displayWord = "";
+            for (let letter of selectedWord) {
+                displayWord += guessedLetters.includes(letter) ? letter : "_";
+            }
+            document.getElementById("result").textContent = displayWord;
+        }
+
+        function isWordGuessed() {
+            for (let letter of selectedWord) {
+                if (!guessedLetters.includes(letter)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function resetGame() {
+            selectedWord = words[Math.floor(Math.random() * words.length)];
+            guessedLetters = [];
+            remainingChances = 6;
+            document.getElementById("result").textContent = "";
+            document.querySelector("p:nth-child(3)").textContent = "남은 기회: " + remainingChances;
+            document.getElementById("history").textContent = "사용한 글자: ";
+        }
+
+        updateResult();
+    </script>
+</body>
+</html>

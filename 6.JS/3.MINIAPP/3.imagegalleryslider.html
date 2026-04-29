@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .slider {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            text-align: center;
+            max-width: 600px;
+            align-items: center;
+        }
+
+        .slider img {
+            max-width: 100%;
+            height: 300px;
+            display: none;  /* 이미지 숨기기 */
+        }
+
+        .slider img.active {
+            display: block;  /* 활성화된 이미지만 표시 */
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>이미지 슬라이더</h1>
+    <div class="slider">
+        <img id="img1" src="images/movie1.jpg" class="active">
+        <img id="img2" src="images/movie2.jpg">
+        <img id="img3" src="images/movie3.jpg">
+
+        <div class="filename" id="filename">images/cat.jpg</div>
+        <div class="buttons">
+            <button id="prevBtn">이전</button>
+            <button id="nextBtn">다음</button>
+        </div>
+    </div>
+
+    <script>
+        const imgs = document.querySelectorAll('.slider img');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const filename = document.getElementById('filename');
+
+        let index = 0;
+
+        function show(direction) {
+            // 이미지에 있는 active 클래스 제거
+            imgs[index].classList.remove('active');
+            index += direction;
+            imgs[index].classList.add('active');
+            
+            // 파일명 출력
+            filename.textContent = imgs[index].src.split('/').slice(-2).join('/');
+            
+            // 이미지가 다 출력되면 이전/다음으로 이동 불가하도록 버튼 disabled
+            if (index + 1 >= imgs.length) {
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.disabled = false;
+            }
+            if (index - 1 < 0) {
+                prevBtn.disabled = true;
+            } else {
+                prevBtn.disabled = false;
+            }
+        }
+            nextBtn.addEventListener('click', () => show(1));
+            prevBtn.addEventListener('click', () => show(-1));
+        </script>
+</body>
+</html>
