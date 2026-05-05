@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PacMan Game</title>
+    <style>
+        canvas {
+            border: 4mm ridge rgb(138, 27, 27);
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>PacMan Game</h1>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const context = canvas.getContext('2d');
+
+        // PacMan의 위치 변수
+        let x = 50;
+        let y = 50;
+
+        // PacMan의 이동 방향 & 속도 변수
+        let dx = 0;
+        let dy = 0;
+        const radius = 30;
+
+        
+        let facing = 0;     // PacMan의 바라보는 방향 변수
+        let mouth = 0.25;   // PacMan의 작은 입 크기
+        let bigMouth = 1;   // PacMan의 큰 입 크기
+
+        // 키보드 이벤트 리스너
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp')    { dx = 0;  dy = -3; facing = -Math.PI / 2; }
+            if (e.key === 'ArrowDown')  { dx = 0;  dy =  3; facing = Math.PI / 2; }
+            if (e.key === 'ArrowLeft')  { dx = -3; dy =  0; facing = Math.PI; }
+            if (e.key === 'ArrowRight') { dx =  3; dy =  0; facing = 0; }
+        });
+
+        // PacMan 그리기 함수
+        function drawPacman(x, y) {
+            const open = Math.PI * mouth;
+            context.beginPath();
+            context.moveTo(x, y);
+            context.arc(x, y, radius, facing + open, facing + Math.PI * 2 - open);
+            context.lineTo(x, y);
+
+            context.fillStyle = '#88ff00';
+            context.fill();
+            context.stroke();
+            context.closePath();
+        }
+
+        // 게임 루프 함수
+        function gameLoop() {
+            x += dx;
+            y += dy;
+
+            // PacMan이 움직일 때 입이 벌어졌다 닫히도록 설정
+            // 초기값은 가만히 있기
+            if (dx !== 0 || dy !== 0) {
+                mouth += 0.01 * bigMouth;
+                if (mouth >= 0.25) bigMouth = -1;
+                if (mouth <= 0.05) bigMouth =  1;
+            }
+
+            // PacMan이 캔버스 밖으로 나가지 않도록 경계 설정
+            x = Math.max(radius, Math.min(canvas.width  - radius, x));
+            y = Math.max(radius, Math.min(canvas.height - radius, y));
+
+            // 캔버스 초기화 및 PacMan 그리기
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawPacman(x, y);
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
