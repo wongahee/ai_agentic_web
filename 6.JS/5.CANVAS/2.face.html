@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="400px" height="300px"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const context = canvas.getContext('2d');
+
+        context.beginPath();
+
+        context.arc(75, 75, 50, 0, Math.PI * 2);
+        context.moveTo(65, 65);
+        context.arc(60, 65, 5, 0, Math.PI * 2);
+        context.moveTo(100, 65);
+        context.arc(95, 65, 5, 0, Math.PI * 2);
+        
+        context.moveTo(110, 75);
+        context.arc(75, 75, 35, 0, Math.PI);
+
+        context.stroke();
+        context.closePath();
+
+        // 픽맨
+        context.beginPath();
+
+        context.moveTo(300, 90);
+
+        let startAngle = 1/4 * Math.PI;
+        let endAngle = 2 * Math.PI - 1/4 * Math.PI;
+        context.arc(300, 90, 50, startAngle, endAngle);
+        context.lineTo(300, 90);
+
+        context.fillStyle = 'yellow';
+        context.fill();
+
+        context.stroke();
+        context.closePath();
+
+        // 2
+        context.beginPath();
+
+        context.moveTo(300, 210);
+        
+        startAngle = 1/6 * Math.PI;
+        endAngle = 2 * Math.PI - 1/6 * Math.PI;
+        context.arc(300, 210, 50, startAngle, endAngle);
+        context.lineTo(300, 210);
+
+        context.fillStyle = 'yellow';
+        context.fill();
+
+        context.stroke();
+        context.closePath();
+    </script>
+</body>
+</html>

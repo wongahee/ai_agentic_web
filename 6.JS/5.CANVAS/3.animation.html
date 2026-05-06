@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 2px solid rgb(255, 2, 255);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="aniCanvas" width="400" height="200"></canvas>
+    <script>
+        const canvas = document.getElementById('aniCanvas');
+        const context = canvas.getContext('2d');
+
+        let x = 50;
+
+        function draw() {
+            context.clearRect(0, 0, 400, 200);
+            context.fillStyle = '#ff0000';
+            context.fillRect(x, 50, 50, 50);
+
+            x +=5;
+
+            // 끝으로 가면 다시 돌아오기
+            if(x > 400) {
+                x = 0;
+            }
+            
+            // 끝으로 가면 멈추기
+            // if(x > 350) {
+            //     x = 350;
+            // }
+            requestAnimationFrame(draw);    // 함수 실행 후 req로 다시 호출
+        }
+
+        draw();
+    </script>
+</body>
+</html>

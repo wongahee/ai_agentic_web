@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 2px solid rgb(255, 145, 0);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="ballCanvas" width="400" height="200"></canvas>
+    <script>
+        const canvas = document.getElementById('ballCanvas');
+        const context = canvas.getContext('2d');
+
+        let x = 50;
+        let y = 50;
+        let radius = 10;
+        let speed = 1;
+        let speedx = speed;
+        let speedy = speed;
+
+        function drawBall() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+
+            context.arc(x, y, radius, 0, Math.PI * 2);
+            context.fillStyle = "red";
+            context.fill();
+
+            context.closePath();
+
+            x += speedx;
+            y += speedy;
+
+            // 끝에 닿으면 튕기기
+            if (y > canvas.height - radius) {
+                speedy = -1;
+            }
+
+            if (x > canvas.width - radius) {
+                speedx = -1;
+            }
+
+            if (y < radius) {
+                speedy = +1;
+                
+            }
+
+            if (x < radius) {
+                speedx = +1;
+                
+            }
+            requestAnimationFrame(drawBall);
+        }
+        drawBall();
+    </script>
+</body>
+</html>
