@@ -10,6 +10,7 @@ import csv
 url = "https://books.toscrape.com/"
 
 resp = requests.get(url)
+resp.encoding = "utf-8"
 
 soup = BeautifulSoup(resp.text, "html.parser")
 # print(soup)
