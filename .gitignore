@@ -1,0 +1,6 @@
+# 환경 설정
+.vscode
+# .DS_Store # 맥북 사용 시
+
+# 업로드 폴더의 파일
+uploads/
