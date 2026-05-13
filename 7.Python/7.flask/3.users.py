@@ -7,7 +7,8 @@ app = Flask(__name__)
 users = [
     {'name': 'Alice', 'age':25, 'phone': '123-456-7890'},
     {'name': 'Bob', 'age':30, 'phone': '123-555-7890'},
-    {'name': 'Charlie', 'age':27, 'phone': '123-777-7890'}
+    {'name': 'Charlie', 'age':27, 'phone': '123-777-7890'},
+    {'name': 'David', 'age': 25, 'phone': '123-888-7890'}
 ]
 
 @app.route('/')
@@ -26,10 +27,22 @@ def get_user_by_name(name):
     if user:
         return jsonify(user)
     else:
-        return jsonify({"message: " "사용자를 찾지 못했습니다."})
+        return jsonify({"message: " "User not found"})
     
-    return jsonify(user)            # 웹에 출력됨
+@app.route('/user/<int:age>')
+def get_user_by_age(age):
+    print("사용자 입력값: ", age)
 
+    user = []
+
+    for u in users:
+        # print(u)
+        if u["age"] == age:
+            user.append(u)
+    if user:
+        return jsonify(user)
+    else:
+        return jsonify({"message": "User not Found"})
 
 if __name__ == '__main__':
     app.run(debug=True)
