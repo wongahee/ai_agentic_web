@@ -13,7 +13,6 @@ users = [
 def search_user(username, Age, Phone):
     result = None
 
-    # 쿼리 파라미터로 name, age, phone을 검색하여 결과를 반환
     username = request.args.get('q')
     Age = request.args.get('q')
     Phone = request.args.get('q')
