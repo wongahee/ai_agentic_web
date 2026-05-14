@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 # decorator
 @app.route('/')
-
 def home():
     return """
     <html>

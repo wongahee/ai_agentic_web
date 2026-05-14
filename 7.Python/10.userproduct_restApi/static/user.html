@@ -11,8 +11,7 @@
         <label>사용자 ID: <input type="number" id="id"></label>
         <button type="submit">검색</button>
         
-        <ul id="userlist">
-        </ul>
+        <ul id="userlist"></ul>
     </form>
 
     <script>
@@ -20,7 +19,8 @@
             ev.preventDefault();
 
             const id = document.getElementById('id').value;
-            fetch(`/api/user/${id}`).then((resp) => resp.json())
+            fetch(`/api/user/${id}`)
+            .then((resp) => resp.json())
             .then((data) => console.log(data));
         });
     </script>

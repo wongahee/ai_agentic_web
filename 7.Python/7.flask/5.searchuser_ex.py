@@ -10,21 +10,21 @@ users = [
 ]
 
 @app.route('/search')
-def search_user(name, age, phone):
+def search_user():
     name = request.args.get('name')
     age = request.args.get('age')
     phone = request.args.get('phone')
 
-    result = None
+    result = users
 
     if name:
         result = [u for u in users if name.lower() in u['name'].lower()]
     if age:
         result = [u for u in result if int(age) == u['age']]
     if phone:
-        result = [u for u in result if phone == u['phone']]
-        # result = [u for u in result if u['phone'].startswith(phone)]
-        # 시작하는 값이 같은(startswith) 전화번호를 가진 사람 출력
+        result = [u for u in result if phone == u['phone'].startswith(phone)]
+    # result = [u for u in result if u['phone'].startswith(phone)]
+    # 시작하는 값이 같은(startswith) 전화번호를 가진 사람 출력
 
     return jsonify(result)
 

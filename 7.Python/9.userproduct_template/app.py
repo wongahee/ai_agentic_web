@@ -6,7 +6,6 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from flask import send_from_directory
 
 app = Flask(__name__)
 
@@ -31,9 +30,7 @@ def home():
     return render_template("index.html")
 
 @app.route('/user')
-
-# URL 파라미터 기반 사용자 조회
-@app.route('/user/<int:user_id>')
+@app.route('/user/<int:user_id>')       # URL 파라미터 기반 사용자 조회
 def user(user_id=None):
     return render_template("user.html", user_id=user_id, users=users)
 
@@ -45,6 +42,7 @@ def product():
     name = request.args.get('name', type=str)
 
     found = list(products.values())
+
     if id:
         found = [p for p in found if p["id"] == id]
     if name:

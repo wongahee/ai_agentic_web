@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def home():
     return send_from_directory("static", "index.html")
 
 @app.route('/user')
-def user(user_id=None):
+def user():
     return send_from_directory("static", "user.html")
 
 @app.route('/product')
