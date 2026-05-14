@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input text="text" id="prompt" placeholder="질문을 입력하세요.">
+    <button id="sendBtn">전송</button>
+    <div id="result"></div>
+    <script>
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            fetch("https://api.openai.com/v1/models", {
+                headers: {
+                    "Authorization": "Bearer PutHereApiKey" // API키 입력하는 곳 (커밋 시 삭제) 
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('result').innerHTML = `${JSON.stringify(data)}`;
+            })
+        })
+    </script>
+</body>
+</html>

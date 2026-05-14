@@ -38,14 +38,14 @@ def product():
 @app.route('/api/user/<id>')
 def search_user(id):
     # 사용자 검색
-    users = None
+    user = users.get(id)
 
-    return jsonify({"result": users})
+    return jsonify({"result": user})
 
 @app.route('/api/product')
 def search_product():
     # 상품 검색
-    product = None
+    product = request.args.get('id')
 
     return jsonify({"result": product})
 
