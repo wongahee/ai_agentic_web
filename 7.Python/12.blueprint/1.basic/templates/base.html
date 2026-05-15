@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>     <!-- app.py에 def home -->
+        <a href="{{ url_for('user.user_page') }}">User</a>    <!-- user_routes.py에 def user_page -->
+        <a href="{{ url_for('admin.admin_page') }}">Admin</a>  <!-- admin_routes.py에 def admin_page -->
+    </nav>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

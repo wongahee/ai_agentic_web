@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <a class="btn btn-primary" href="{{ url_for('home') }}">Home</a>     <!-- app.py에 def home -->
+        <a class="btn btn-secondary" href="{{ url_for('user.user_page') }}">User</a>    <!-- user_routes.py에 def user_page -->
+        <a class="btn btn-success" href="{{ url_for('admin.admin_page') }}">Admin</a>  <!-- admin_routes.py에 def admin_page -->
+        <a class="btn btn-info" href="{{ url_for('product.product_page') }}">Product</a>  <!-- product_routes.py에 def product_page -->
+    </nav>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

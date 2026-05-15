@@ -2,5 +2,8 @@
 .vscode
 # .DS_Store # 맥북 사용 시
 
+# Credentials (민감정보)
+.env
+
 # 업로드 폴더의 파일
 uploads/

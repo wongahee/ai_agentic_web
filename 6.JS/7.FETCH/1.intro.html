@@ -13,9 +13,11 @@
         document.getElementById('loadBtn').addEventListener('click', () => {
             fetch('http://localhost:5000/api/data').then((response) => {
                 if(!response.ok){    // 200 확인
-                    console.log("성공적인 응답이 왔음. 응답은 여기 담겨있음: ", response)
-                    return response.json();  // JSON을 자료구조로 파싱하기
+                    console.log("응답은 왔으나, OK가 아님.", response);
+                    throw new Error("알수 없는 오류가 발생했습니다.");
                 }
+                console.log("성공적인 응답이 왔음. 응답은 여기 담겨있음: ", response)
+                return response.json();  // JSON을 자료구조로 파싱하기
             }).then((data) => {
                 console.log("최종 파싱이 끝난 JSON 자료구조가 넘어옴: ", data)
             }).catch((error) => {
