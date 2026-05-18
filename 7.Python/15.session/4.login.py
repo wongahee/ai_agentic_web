@@ -57,20 +57,35 @@ def login():
 # 비밀번호 변경 기능 추가
 # - method -> POST로 확장
 # - users 안에서 나의 비번 바꾸기
+# .html
 # - pw 변경 시, 나의 profile에서 확인
-# - pw 변경 버튼 클릭 시, 변경확인 알려줌 (사용자 피드백)
+# - pw 변경 버튼 클릭 시, 변경 확인 알려줌 (사용자 피드백)
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET','POST'])
 def profile():
     user = session.get('user')
     # 보안 - 로그인 안됐으면, home으로 이동
     if not user:
         return redirect(url_for('home'))
+    
+    if request.method == 'POST':
+        new_pw = request.form.get('new_pw')
+        # print(new_pw)
+
+        # users에 있는 계정 비밀번호 바꾸기
+        for u in users:
+            if u['id'] == user['id']:
+                u['pw'] == new_pw
+                session['user'] = u             # 세션정보 갱신
+                message = '비밀번호 변경 완료'
+        # return render_template('profile.html', user=user, message=message)    # 변경 메시지 출력
+        return redirect(url_for('profile'))     # 변경 후, 자동으로 페이지 redirect
+
     return render_template('profile.html', user=user)
 
 @app.route('/logout')
 def logout():
-    # 키가 없을 때(로그아웃 두 번 했을 때 오류 방지)
+    # 키가 없을 때(로그아웃 두 번 했을 때) 오류 방지
     session.pop('user', None)
     return redirect(url_for('home'))
     
