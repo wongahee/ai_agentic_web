@@ -37,7 +37,7 @@ def login():
         # next(결과값, 안 나왔을 시 default값)
         user = next((u for u in users if u['id'] == id and u['pw'] == pw), None)
 
-        # 방법 2.
+        # for문 방법 2.
         # user = None
         # for u in users:
         #     if u['id'] == id and u['pw'] == pw:
@@ -67,7 +67,7 @@ def profile():
     # 보안 - 로그인 안됐으면, home으로 이동
     if not user:
         return redirect(url_for('home'))
-    
+
     if request.method == 'POST':
         new_pw = request.form.get('new_pw')
         # print(new_pw)
@@ -75,11 +75,13 @@ def profile():
         # users에 있는 계정 비밀번호 바꾸기
         for u in users:
             if u['id'] == user['id']:
-                u['pw'] == new_pw
+                u['pw'] = new_pw
                 session['user'] = u             # 세션정보 갱신
+
                 message = '비밀번호 변경 완료'
-        # return render_template('profile.html', user=user, message=message)    # 변경 메시지 출력
-        return redirect(url_for('profile'))     # 변경 후, 자동으로 페이지 redirect
+                
+                # return render_template('profile.html', user=user, message=message)    # 변경 메시지 출력
+                return redirect(url_for('profile'))     # 변경 후, 자동으로 페이지 redirect
 
     return render_template('profile.html', user=user)
 
@@ -88,6 +90,6 @@ def logout():
     # 키가 없을 때(로그아웃 두 번 했을 때) 오류 방지
     session.pop('user', None)
     return redirect(url_for('home'))
-    
+
 if __name__ == "__main__":
     app.run(debug=True)
