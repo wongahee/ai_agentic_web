@@ -12,9 +12,10 @@
     <div id="result"></div>
     <script>
         document.getElementById('loadBtn').addEventListener('click', async() => {
-            try {
-                const userid = document.getElementById('uid').value;     // input box 입력값
+            const userid = document.getElementById('uid').value;     // input box 입력값
+            console.log("사용자 ID: ", userid)
 
+            try {
                 const response = await fetch(`http://jsonplaceholder.typicode.com/users/${userid}`);
                 const data = await response.json();
                 
