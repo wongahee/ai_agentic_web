@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>실시간 검색 필터</h1>
+    <input type="text" id="searchInput" placeholder="검색어 입력하기">
+    <ul id="itemList">
+        <li>Apple</li>
+        <li>Orange</li>
+        <li>Banana</li>
+        <li>Kiwi</li>
+        <li>Graph</li>
+        <li>Cherry</li>
+        <li>Pear</li>
+        <li>Pineapple</li>
+        <li>Strawberry</li>
+        <li>Blueberry</li>
+        <li>Watermelon</li>
+        <li>Melon</li>
+        <li>Mango</li>
+        <li>Peach</li>
+        <li>Lemon</li>
+        <li>Plum</li>
+        <li>Dragonfruits</li>
+        <li>Lime</li>
+    </ul>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const items = document.querySelectorAll('#itemList > li');
+
+        const debouncedFilter = debounce(filterItems, 1000);
+         searchInput.addEventListener('keyup', debouncedFilter);
+
+        // 디바운스
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fn(...args);
+                }, delay);
+            };
+        }
+
+        // 필터 함수
+        function filterItems() {
+            console.log('필터링 실행', searchInput.value);
+            const filter = searchInput.value.toLowerCase();
+
+            items.forEach((item) => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? '' : 'none';
+            });
+    }
+    </script>
+</body>
+</html>
