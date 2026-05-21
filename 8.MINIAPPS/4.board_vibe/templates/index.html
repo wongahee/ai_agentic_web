@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Vibe - Glassmorphic Bulletin Board</title>
+    <!-- Meta tags for premium SEO and descriptive title -->
+    <meta name="description" content="Board Vibe is a gorgeous glassmorphic real-time bulletin board application. Share your thoughts, express your styling, and catch the positive vibes.">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Dynamic CSS Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Brand Section -->
+        <header>
+            <div class="logo-container">
+                <i class="fas fa-meteor logo-icon" id="brand-logo"></i>
+                <h1>Board Vibe</h1>
+            </div>
+            <p class="subtitle" id="brand-subtitle">Share your thoughts, spark discussions, and catch the dynamic vibe.</p>
+        </header>
+
+        <!-- Dynamic Form Section -->
+        <section class="glass-panel form-section" id="post-creator-section">
+            <form id="post-form">
+                <!-- Title Field -->
+                <div class="form-group">
+                    <div class="form-row">
+                        <label for="title-input">Title</label>
+                        <span class="char-counter" id="title-counter">0/50</span>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="title-input" 
+                        class="input-control" 
+                        placeholder="What's on your mind today?" 
+                        maxlength="50" 
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+
+                <!-- Message Field -->
+                <div class="form-group">
+                    <div class="form-row">
+                        <label for="message-input">Message</label>
+                        <span class="char-counter" id="message-counter">0/500</span>
+                    </div>
+                    <textarea 
+                        id="message-input" 
+                        class="input-control" 
+                        placeholder="Write your beautiful message here..." 
+                        maxlength="500" 
+                        required
+                    ></textarea>
+                </div>
+
+                <!-- Submit Vibe Button -->
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    <span id="submit-btn-text">Spread the Vibe</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- Board Section -->
+        <section class="glass-panel board-section" id="board-feed-section">
+            <div class="board-header">
+                <h2 class="board-title">Vibe Feed</h2>
+                <span class="post-count-badge" id="post-count-badge">0</span>
+            </div>
+            
+            <!-- Cards Grid (AJAX Handled) -->
+            <div class="cards-grid" id="cards-grid">
+                <!-- Javascript will load posts dynamically here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Error/Notice Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Dynamic JavaScript file -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

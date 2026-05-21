@@ -1,0 +1,18 @@
+{
+  "name": "musicapp-vibe",
+  "version": "1.0.0",
+  "description": "VibeSearch Music Search Single Page Application",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "music",
+    "vibe",
+    "search",
+    "spa"
+  ],
+  "author": "Antigravity Pair Programmer",
+  "license": "ISC"
+}

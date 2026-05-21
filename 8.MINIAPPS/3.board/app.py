@@ -32,6 +32,10 @@ def list():
 
 @app.route('/delete', methods=['POST'])
 def delete():
+    sql = "DELETE FROM board"
+    db.execute(sql)
+    db.commit()
+    
     return jsonify({'result':'success'})
 
 @app.route('/modify', methods=['POST'])

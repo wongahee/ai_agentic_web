@@ -21,7 +21,7 @@ function makeCard(id, title, message) {
             <p>${title}</p>
             <p>${message}</p>
             <button>수정</button>
-            <button>삭제</button>
+            <button id="delete">삭제</button>
         </div>
     </div>
     `
@@ -41,3 +41,11 @@ document.getElementById('input-submit').addEventListener('click', () => {
         body: JSON.stringify({ title, message })
     })
 })
+
+document.getElementById('delete').addEventListener('click', async () => {
+    const deleteBtn = document.getElementById('delete');
+    fetch('/delete', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'}
+    })
+})  
