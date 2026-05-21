@@ -1,0 +1,26 @@
+# 구버전 삭제 및 신버전 설치
+# pip uninstall openai
+# pip install openai
+
+import openai
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+# 모든 대화를 클라이언트를 통해 진행
+client = openai.OpenAI(api_key=openai_api_key)
+
+response = client.chat.completions.create(
+    model='gpt-3.5-turbo',
+    messages=[
+        {'role':'system', 'content': '당신은 나의 질문에 잘 답변하는 챗봇입니다.'},
+        {'role':'user', 'content':'안녕하세요, 반갑습니다.'}
+    ]
+)
+
+final_response = response.choices[0].message.content
+
+print(final_response)
